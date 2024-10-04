@@ -1,0 +1,10 @@
+[submodule "third-party/websocketpp"]
+	path = third-party/websocketpp
+	url = https://github.com/zaphoyd/websocketpp.git
+[submodule "third-party/spdlog"]
+	path = third-party/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "third-party/cppError"]
+	path = third-party/cppError
+	url = https://github.com/overleon/cppError
+	branch = develop
