@@ -6,8 +6,12 @@ namespace overHere::net::ws
         : m_next_id(0),
           _all_closed_status(false)
     {
-        _endpoint.set_access_channels(websocketpp::log::alevel::all);
-        _endpoint.clear_access_channels(websocketpp::log::alevel::frame_payload);
+        // Disable all logging
+        _endpoint.clear_access_channels(websocketpp::log::alevel::all);
+        
+        // Optionally, enable only error logging
+        // _endpoint.set_access_channels(websocketpp::log::alevel::fail);
+
         _endpoint.init_asio();
         _endpoint.start_perpetual();
 

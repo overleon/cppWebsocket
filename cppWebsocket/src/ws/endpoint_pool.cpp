@@ -46,7 +46,7 @@ namespace overHere::net::ws
         std::lock_guard guard(_mtx);
         if(idx >= _max_iterator)
             return _pool[_max_iterator - 1];
-        return _pool[_max_iterator];
+        return _pool[idx];
     }
 
     size_t endpoint_pool_c::Max_index() const
