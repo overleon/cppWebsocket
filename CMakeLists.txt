@@ -55,6 +55,9 @@ if(BUILD_EXAMPLES_CPPWEBSOCKET)
     add_executable(simple examples/simple.cpp)
     target_link_libraries(simple PRIVATE cppWebsocket)
 
-    add_executable(multithreading examples/endpoint_pool.cpp)
+    add_executable(endpoint_pool examples/endpoint_pool.cpp)
+    target_link_libraries(endpoint_pool PRIVATE cppWebsocket)
+
+    add_executable(multithreading examples/multithreading.cpp)
     target_link_libraries(multithreading PRIVATE cppWebsocket)
 endif()
