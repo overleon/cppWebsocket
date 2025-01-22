@@ -1,0 +1,22 @@
+name: Basic CI docker worker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build docker container
+        run: |
+          docker run -t ci-docker .
+
+      - name: Run docker container
+        run: |
+          docker run ci-docker
