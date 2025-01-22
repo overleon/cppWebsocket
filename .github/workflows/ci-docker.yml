@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Build docker container
         run: |
-          docker run -t ci-docker .
+          docker build -t ci-docker .
 
       - name: Run docker container
         run: |
