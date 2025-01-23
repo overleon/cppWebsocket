@@ -15,6 +15,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        
+      - name: Install CMake
+        run: |
+          mkdir ~/cmake-3.31.0
+          cd ~/cmake-3.31.0
+          wget https://cmake.org/files/v3.31/cmake-3.31.0-linux-x86_64.sh
+          echo "Y\nn" | sh cmake-3.31.0-linux-x86_64.sh --prefix ~/cmake-3.31.0
+          update-alternatives --install /usr/bin/cmake cmake ~/cmake-3.31.0/bin/cmake 60
 
       - name: Install system dependencies
         run: |
@@ -22,13 +30,6 @@ jobs:
           sudo apt-get upgrade -y
           sudo apt-get install -y curl fish wget git gdb ninja-build libboost-all-dev libssl-dev
 
-      - name: Install CMake
-        run: |
-          mkdir ~/cmake-3.31.0
-          cd ~/cmake-3.31.0
-          wget https://cmake.org/files/v3.31/cmake-3.31.0-linux-x86_64.sh
-          echo "Y\nn" | sudo sh cmake-3.31.0-linux-x86_64.sh --prefix ~/cmake-3.31.0
-          sudo update-alternatives --install /usr/bin/cmake cmake ~/cmake-3.31.0/bin/cmake 60
 
       - name: Verify installations
         run: |
