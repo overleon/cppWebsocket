@@ -1,4 +1,4 @@
-name: Basic CI docker worker
+name: Basic CI
 
 on:
   push:
@@ -13,14 +13,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build docker container
+      - name: Install system dependencies
         run: |
-          docker build -t ci-docker .
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+          sudo apt-get install -y curl fish wget git gdb ninja-build libboost-all-dev libssl-dev
 
-      - name: Run docker container
+      - name: Install CMake
         run: |
-          docker run ci-docker
+          mkdir ~/cmake-3.31.0
+          cd ~/cmake-3.31.0
+          wget https://cmake.org/files/v3.31/cmake-3.31.0-linux-x86_64.sh
+          echo "Y\nn" | sudo sh cmake-3.31.0-linux-x86_64.sh --prefix ~/cmake-3.31.0
+          sudo update-alternatives --install /usr/bin/cmake cmake ~/cmake-3.31.0/bin/cmake 60
+
+      - name: Verify installations
+        run: |
+          cmake --version
+          ninja --version
+          gdb --version
+
+      - name: Build and test your project
+        run: |
+          # Add commands to build and test your project
+          echo "Build and test steps go here"
