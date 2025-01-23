@@ -30,7 +30,6 @@ jobs:
           sudo apt-get upgrade -y
           sudo apt-get install -y curl fish wget git gdb ninja-build libboost-all-dev libssl-dev
 
-
       - name: Verify installations
         run: |
           cmake --version
